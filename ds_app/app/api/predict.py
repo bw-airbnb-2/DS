@@ -48,10 +48,27 @@ class AirBnB(BaseModel):
         return pd.DataFrame([dict(self)])
 
 @router.post('/predict')
-def predict_species(airbnb: AirBnB):
-    """Predict airbnb species from price and bedrooms"""
-    species = classifier.predict(airbnb.to_df())
-    return species[0]
+async def predict_species(airbnb: AirBnB):
+    """Random baseline predictions for classification problem"""
+    X_new = airbnb.to_df()
+    log.info(X_new)
+    model = tf.keras.models.load_model("ds_app/keras_model/saved_model-3.pb")
+    Xnew = np.array([
+        X_new['userId'].iloc[0], X_new['name'].iloc[0], X_new['room_type'].iloc[0], 
+        X_new['location'].iloc[0], X_new['price'].iloc[0], X_new['accommodates'].iloc[0],
+        X_new['bathrooms'].iloc[0], X_new['bedrooms'].iloc[0], X_new['beds'].iloc[0],
+        X_new['guests_included'].iloc[0], X_new['minimum_nights'].iloc[0], 
+        X_new['maximum_nights']]
+    )
+    Xnew = scaler_x.transform(Xnew)
+    y_pred = model.predict(Xnew)
+    y_pred = scaler_y.inverse_transform(y_pred)
+    y_pred = float(y_pred[0][0])
+    return {
+        'prediction':y_pred
+    }
+
+    
 
 
 @router.get('/random')
