@@ -13,10 +13,10 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from keras.models import load_model
-#import tensorflow as tf
-#from tensorflow import keras
-#from tensorflow.keras.models import Sequential
-#from tensorflow.keras.layers import Dense
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
 
 
 log = logging.getLogger(__name__)
@@ -70,11 +70,10 @@ class AirBnB(BaseModel):
         return pd.DataFrame([dict(self)])
 
 @router.post('/predict')
-async def predict_species(airbnb: AirBnB):
+async def predict_species(item: AirBnB):
     """Random baseline predictions for classification problem"""
-    X_new = airbnb.to_df()
+    X_new = item.to_df()
     log.info(X_new)
-    model = classifier
     Xnew = np.array([
         X_new['userId'].iloc[0], X_new['name'].iloc[0], X_new['room_type'].iloc[0], 
         X_new['location'].iloc[0], X_new['price'].iloc[0], X_new['accommodates'].iloc[0],
@@ -83,7 +82,7 @@ async def predict_species(airbnb: AirBnB):
         X_new['maximum_nights']]
     )
     Xnew = scaler_x.transform(Xnew)
-    y_pred = model.predict(Xnew)
+    y_pred = classifier.predict(Xnew)
     y_pred = scaler_y.inverse_transform(y_pred)
     y_pred = float(y_pred[0][0])
     return {

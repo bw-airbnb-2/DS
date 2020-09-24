@@ -15,8 +15,13 @@ from .database import SessionLocal, engine
 # dependency tables
 models.Base.metadata.create_all(bind=engine)
 
-app = FastAPI()
-#app.include_router(predict.router)
+app = FastAPI(
+    title = 'AirBnB DS API',
+    description='',
+    version='.1'
+    docs_url='/'
+)
+app.include_router(predict.router)
 
 # Dependency
 def get_db():
