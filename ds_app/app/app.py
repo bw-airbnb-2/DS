@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
-from .api import predict, viz
+from .api import viz, untitled
 #from .api import database
 
 description = """
@@ -19,7 +19,7 @@ app = FastAPI(
     docs_url='/',
 )
 
-app.include_router(predict.router)
+app.include_router(untitled.router)
 app.include_router(viz.router)
 #app.include_router(database.router)
 
