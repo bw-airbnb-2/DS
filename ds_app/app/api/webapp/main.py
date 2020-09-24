@@ -21,7 +21,7 @@ app = FastAPI(
     version='.1'
     docs_url='/'
 )
-app.include_router(predict.router)
+#app.include_router(predict.router)
 
 # Dependency
 def get_db():

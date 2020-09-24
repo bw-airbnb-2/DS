@@ -52,18 +52,18 @@ classifier = load_model('keras_model/keras_nn_model.h5')
 class AirBnB(BaseModel):
     """Data model to parse & validate airbnb measurements"""
     {
-    "userId":float=Field(..., example=10292),
-    "name":str=Field(..., example="Chris"),
-    "room_type":str=Field(..., example="large"),
-    "location":str=Field(..., example="Japan"),
-    "price":float=Field(..., example=255.99),
-    "accommodates":float=Field(..., example=2),
-    "bathrooms":float=Field(..., example=3),
-    "bedrooms":float=Field(..., example=4),
-    "beds":float=Field(..., example=2),
-    "guests_included":float=Field(..., example=4),
-    "minimum_nights":float=Field(..., example=3),
-    "maximum_nights":float=Field(..., example=6)
+  "userId":1,
+  "name":"Chris",
+  "room_type":"large",
+  "location":"Japan",
+  "price":255.99,
+  "accommodates":3,
+  "bathrooms":2,
+  "bedrooms":2,
+  "beds":3,
+  "guests_included":2,
+  "minimum_nights":3,
+  "maximum_nights":6
     }
 
     def to_df(self):
