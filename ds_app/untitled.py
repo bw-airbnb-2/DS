@@ -23,9 +23,7 @@ import os
 log = logging.getLogger(__name__)
 router = APIRouter()
 
-print('      -  - - - - - - - - - - - - - - - - - - - - - - - - - - - -  ')
-print(os.getcwd())
-model = load_model(os.getcwd())
+model = load_model('keras_nn_model.h5')
 
 class AirBnB(BaseModel):
     """Data model to parse & validate airbnb measurements"""
