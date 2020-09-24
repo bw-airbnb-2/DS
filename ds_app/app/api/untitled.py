@@ -20,8 +20,10 @@ from tensorflow.keras.layers import Dense
 from keras.models import load_model
 import os
 
+
 log = logging.getLogger(__name__)
 router = APIRouter()
+
 
 print(os.getcwd())
 model = load_model('keras_nn_model.h5')
