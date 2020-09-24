@@ -25,8 +25,8 @@ router = APIRouter()
 #load and read the file
 df = pd.read_csv("airbnb.csv", index_col=0)
 dataset = df.values
-X = dataset[:,0:12]
-y = dataset[:,12]
+X = dataset[:,0:10]
+y = dataset[:,10]
 y = np.reshape(y, (-1,1))
 scaler_x = MinMaxScaler()
 scaler_y = MinMaxScaler()
@@ -52,18 +52,20 @@ classifier = load_model('keras_model/keras_nn_model.h5')
 
 class AirBnB(BaseModel):
     """Data model to parse & validate airbnb measurements"""
-    zipcode: float = Field(..., example=10453)
-    property_type: str = Field(..., example='House')
-    square_footage: float = Field(..., example=4000)
-    bedrooms: float = Field(..., example=6)
-    bathrooms: float = Field(..., example=2)
-    review_score_rating: float = Field(..., example=70)
-    accommodates: float = Field(..., example=1)
-    cancellation_policy: str = Field(..., example='moderate')
-    cleaning_fee: float = Field(..., example=300)
-    free_parking: str = Field(..., example='yes')
-    wifi: str = Field(..., example='yes')
-    cable_tv: str = Field(..., example='yes')
+    {
+  "userId":1,
+  "name":"Chris",
+  "room_type":"large",
+  "location":"Japan",
+  "price":255.99,
+  "accommodates":3,
+  "bathrooms":2,
+  "bedrooms":2,
+  "beds":3,
+  "guests_included":2,
+  "minimum_nights":3,
+  "maximum_nights":6
+    }
 
     def to_df(self):
         """Convert pydantic object to pandas dataframe with 1 row."""
