@@ -11,19 +11,6 @@ Using historical booking data from AirBnB, AirBnB Optimal Price will allow a use
 - Train a predictive model on AirBnB `prices` using historical data.
 - Make predictions accessible to the rest of the team. (Ex: deploy via a Flask API [or equivalent] to receive inputs (`location`, `size`, etc) and output predicted optimal `price` in JSON format.
 
-<<<<<<< HEAD
-<<<<<<< HEAD:ds_app/README.md
-=======
->>>>>>> 5a40b90f61b7b2b48573dd8a320826ade2daff80
-## ☝️ **AirBNB Deployed Through Heroku:
-
-https://airbnb-price-web-app.herokuapp.com/
-
-
-## This DS Build Week Include The Followings:
-
-<<<<<<< HEAD
-=======
 
 ## ☝️ **AirBNB Deployed Through Heroku:
 
@@ -32,9 +19,6 @@ https://airbnb-price-web-app.herokuapp.com/
 
 ## This DS Build Week Include The Followings:
 
->>>>>>> ff3059ad90ff45f64ce440a3dfaff251bb2dd092:README.md
-=======
->>>>>>> 5a40b90f61b7b2b48573dd8a320826ade2daff80
 - [Tech stack](#tech-stack)
 - [Getting started](#getting-started)
 - [File structure](#file-structure)
@@ -60,7 +44,6 @@ https://airbnb-price-web-app.herokuapp.com/
 Clone the repo
 ```
 git clone https://github.com/bw-airbnb-2/DS
-
 cd YOUR-REPO-NAME
 ```
 
@@ -148,10 +131,10 @@ You'll see the server response, including:
 
 When your API receives a POST request, FastAPI automatically parses and validates the request body JSON, using the `Item` class attributes and functions. Edit this class so it's consistent with the column names and types from your training dataframe. 
 
-- [FastAPI docs - Request Body](https://fastapi.tiangolo.com/tutorial/body/)
-- [FastAPI docs - Field additional arguments](https://fastapi.tiangolo.com/tutorial/schema-extra-example/#field-additional-arguments)
-- [calmcode.io video - FastAPI - Json](https://calmcode.io/fastapi/json.html)
-- [calmcode.io video - FastAPI - Type Validation](https://calmcode.io/fastapi/type-validation.html)
+- [FastAPI docs - Request Body](https://fastapi.tiangolo.com/tutorial/body/)
+- [FastAPI docs - Field additional arguments](https://fastapi.tiangolo.com/tutorial/schema-extra-example/#field-additional-arguments)
+- [calmcode.io video - FastAPI - Json](https://calmcode.io/fastapi/json.html)
+- [calmcode.io video - FastAPI - Type Validation](https://calmcode.io/fastapi/type-validation.html)
 - [pydantic docs - Validators](https://pydantic-docs.helpmanual.io/usage/validators/)
 
 `app/api/viz.py` defines the **Visualization** endpoint. Currently `/viz/{statecode}` accepts GET requests where `{statecode}` is a 2 character US state postal code, and responds with a Plotly figure of the state's unemployment rate, as a JSON string. Create your own Plotly visualizations in notebooks. Then add your code to this source code file. Your web developer teammates can use [react-plotly.js](https://github.com/Lambda-School-Labs/labs-spa-starter/tree/main/src/components/pages/ExampleDataViz) to show the visualizations.
@@ -202,22 +185,16 @@ flake8
 Prepare Heroku
 ```
 heroku login
-
 heroku create YOUR-APP-NAME-GOES-HERE
-
 heroku git:remote -a YOUR-APP-NAME-GOES-HERE
 ```
 
 Deploy to Heroku
 ```
 git add --all
-
 git add --force Pipfile.lock
-
 git commit -m "Deploy to Heroku"
-
 git push heroku main:master
-
 heroku open
 ```
 
