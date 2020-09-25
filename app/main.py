@@ -11,7 +11,6 @@ app= FastAPI(
     docs_url='/',
 )
 
-app.set('port', PORT)
 
 app.include_router(predict.router)
 
