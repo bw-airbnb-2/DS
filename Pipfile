@@ -26,6 +26,9 @@ async-exit-stack = "*"
 async-generator = "*"
 sqlalchemy = "*"
 psycopg2 = "*"
+keras = "==2.2.0"
+tensorflow = "==2.2.0"
+h11 = "*"
 
 [requires]
 python_version = "3.7"
