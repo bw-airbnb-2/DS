@@ -5,21 +5,22 @@ import plotly.express as px
 router = APIRouter()
 
 
-@router.get('/viz/{statecode}')
-async def viz(statecode: str):
+@router.get('/viz/{location}')
+async def viz(location: str):
     """
-    Visualize state unemployment rate from [Federal Reserve Economic Data](https://fred.stlouisfed.org/) 📈
+    ## Visualize locations for users to check their airbnb optimal price rates
     
     ### Path Parameter
-    `statecode`: The [USPS 2 letter abbreviation](https://en.wikipedia.org/wiki/List_of_U.S._state_and_territory_abbreviations#Table) 
-    (case insensitive) for any of the 50 states or the District of Columbia.
+    `location`: The [USPS 2 letter abbreviation](https://en.wikipedia.org/wiki/List_of_U.S._state_and_territory_abbreviations#Table)
+    (https://www.britannica.com/topic/list-of-countries-1993160) 
+    (case insensitive) for any of the 50 locations or the District of Columbia.
 
     ### Response
     JSON string to render with [react-plotly.js](https://plotly.com/javascript/react/)
     """
-
-    # Validate the state code
-    statecodes = {
+    
+    # Validate the location
+    locations = {
         'AL': 'Alabama', 'AK': 'Alaska', 'AZ': 'Arizona', 'AR': 'Arkansas', 
         'CA': 'California', 'CO': 'Colorado', 'CT': 'Connecticut', 
         'DE': 'Delaware', 'DC': 'District of Columbia', 'FL': 'Florida', 
@@ -37,18 +38,16 @@ async def viz(statecode: str):
         'VA': 'Virginia', 'WA': 'Washington', 'WV': 'West Virginia', 
         'WI': 'Wisconsin', 'WY': 'Wyoming'
     }
-    statecode = statecode.upper()
-    if statecode not in statecodes:
-        raise HTTPException(status_code=404, detail=f'State code {statecode} not found')
+    
 
-    # Get the state's unemployment rate data from FRED
-    url = f'https://fred.stlouisfed.org/graph/fredgraph.csv?id={statecode}UR'
-    df = pd.read_csv(url, parse_dates=['DATE'])
-    df.columns = ['Date', 'Percent']
+    # Get the location's locations for users to check the optimal price rate
+    url = "https://raw.githubusercontent.com/fallenleaves404/NYC_Airbnb_Analysis/master/AB_NYC_2019.csv"
+    df1 = pd.read_csv(url)
 
-    # Make Plotly figure
-    statename = statecodes[statecode]
-    fig = px.line(df, x='Date', y='Percent', title=f'{statename} Unemployment Rate')
+    # We can improve the location much better by making a scatter mapbox
+    # https://plot.ly/python/mapbox-layers/#base-maps-in-layoutmapboxstyle
+    fig = px.scatter_mapbox(df1, lat='latitude', lon='longitude', color='price', opacity=0.1)
+    fig.update_layout(mapbox_style='stamen-terrain')
 
     # Return Plotly figure as JSON string
     return fig.to_json()
