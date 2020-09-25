@@ -12,6 +12,11 @@ Using historical booking data from AirBnB, AirBnB Optimal Price will allow a use
 - Make predictions accessible to the rest of the team. (Ex: deploy via a Flask API [or equivalent] to receive inputs (`location`, `size`, etc) and output predicted optimal `price` in JSON format.
 
 
+## ☝️ **AirBNB Deployed Through Heroku:
+
+https://airbnb-price-web-app.herokuapp.com/
+
+
 ## This DS Build Week Include The Followings:
 
 - [Tech stack](#tech-stack)
